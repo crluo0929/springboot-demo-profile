@@ -2,16 +2,21 @@ package com.example.config;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.example.entity.User;
 import com.example.repo.UserRepository;
+
+import lombok.Data;
 
 @Configuration
 @Profile("dev")
@@ -20,8 +25,11 @@ import com.example.repo.UserRepository;
 		DataSourceTransactionManagerAutoConfiguration.class,
 		HibernateJpaAutoConfiguration.class
 })
+@EnableConfigurationProperties(FakeUser.class)
 public class DevConfig {
 
+	@Autowired FakeUser fakeUser ;
+	
 	@Bean
 	public UserRepository mockUserRepository() {
 		return new UserRepository() {
@@ -34,7 +42,8 @@ public class DevConfig {
 
 			@Override
 			public Optional<User> findById(Integer id) {
-				return Optional.of(new User(id,"假資料"));
+				fakeUser.setId(id);
+				return Optional.of(fakeUser);
 			}
 
 			@Override
@@ -63,5 +72,10 @@ public class DevConfig {
 			
 		} ;
 	}
+	
+}
+
+@ConfigurationProperties(prefix = "fakeuser")
+class FakeUser extends User{
 	
 }

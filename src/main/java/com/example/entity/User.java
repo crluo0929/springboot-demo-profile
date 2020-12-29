@@ -1,8 +1,5 @@
 package com.example.entity;
 
-
-
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -19,5 +16,8 @@ public class User {
 	@Id
 	private int id;
 	private String name ;
+	private String phone;
+	private String email;
+	private String address;
 	
 }

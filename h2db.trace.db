@@ -1,0 +1,33 @@
+2020-12-29 22:07:21 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE USER(
+    ID INT PRIMARY KEY,
+    NAME VARCHAR(10),
+    PHONE VARCHAR(10),
+    EMAIL VARCHAR(30),
+    ADDRESS VARCHAR(30),
+)[*]"; expected "identifier"; SQL statement:
+create table user(
+    id int primary key,
+    name varchar(10),
+    phone varchar(10),
+    email varchar(30),
+    address varchar(30),
+) [42001-200]
+2020-12-29 22:07:24 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE USER(
+    ID INT PRIMARY KEY,
+    NAME VARCHAR(10),
+    PHONE VARCHAR(10),
+    EMAIL VARCHAR(30),
+    ADDRESS VARCHAR(30),
+)[*]"; expected "identifier"; SQL statement:
+create table user(
+    id int primary key,
+    name varchar(10),
+    phone varchar(10),
+    email varchar(30),
+    address varchar(30),
+) [42001-200]
+2020-12-29 22:07:47 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FORM[*] USER"; SQL statement:
+select * form user [42000-200]
